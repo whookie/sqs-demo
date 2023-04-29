@@ -1,4 +1,6 @@
 # sqs-demo
 
 #### Temporary note:
-https://earthquake.usgs.gov/fdsnws/event/1/
+- Provide endpoint to post a domain and a name to
+- Cross-reference the domain with geolocation information (ipapi.co)
+- Provide endpoint to request "extended" data
