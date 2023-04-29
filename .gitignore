@@ -25,5 +25,9 @@ hs_err_pid*
 # VSCode workspace files
 .vscode/
 
+# Gradle temporary files
+.gradle/
+
 # Exclude all built binary files by directory
 bin/
+build/
