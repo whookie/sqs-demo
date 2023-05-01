@@ -1,6 +1,8 @@
 package com.thro.sqsdemo.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +36,7 @@ public class ExtendedDomainInformation {
         this.domain = domain;
     }
 
-    public ArrayList<CustomInformationField> getInformationFields() {
+    public List<CustomInformationField> getInformationFields() {
         return information;
     }
 

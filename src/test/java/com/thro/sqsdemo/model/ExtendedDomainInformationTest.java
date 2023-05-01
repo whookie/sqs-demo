@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class ExtendedDomainInformationTest {
+class ExtendedDomainInformationTest {
 	
     @Test
     void ExtendedDomainInformation_GetSetDomainSuccess() {
@@ -21,8 +21,8 @@ public class ExtendedDomainInformationTest {
         dom.addCustomInformation("Subdomain I", "translate.google.com");
         var information = dom.getInformationFields();
         
-        assertEquals(information.size(), 1);
-        assertEquals(information.get(0).getName(), "Subdomain I");
-        assertEquals(information.get(0).getValue(), "translate.google.com");
+        assertEquals(1, information.size());
+        assertEquals("Subdomain I", information.get(0).getName());
+        assertEquals("translate.google.com", information.get(0).getValue());
     }
 }
