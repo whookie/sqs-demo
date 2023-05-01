@@ -45,4 +45,8 @@ public class CustomInformationField {
     public void setParentObject(ExtendedDomainInformation domain) {
         this.domain = domain;
     }
+
+    public ExtendedDomainInformation getParentObject() {
+        return this.domain;
+    }
 }
