@@ -22,7 +22,7 @@ public class ExtendedDomainInformation {
     private String domain;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ArrayList<CustomInformationField> information = new ArrayList<>();
+    private List<CustomInformationField> information = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -38,6 +38,10 @@ public class ExtendedDomainInformation {
 
     public List<CustomInformationField> getInformationFields() {
         return information;
+    }
+
+    public void setCustomInformation(List<CustomInformationField> information) {
+        this.information = information;
     }
 
     public void addCustomInformation(String title, String value) {
