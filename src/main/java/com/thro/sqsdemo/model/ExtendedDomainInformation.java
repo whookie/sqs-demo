@@ -1,7 +1,6 @@
 package com.thro.sqsdemo.model;
 
-import java.util.Set;
-
+import java.util.ArrayList;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +20,7 @@ public class ExtendedDomainInformation {
     private String domain;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<CustomInformationField> information;
+    private ArrayList<CustomInformationField> information = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -35,7 +34,7 @@ public class ExtendedDomainInformation {
         this.domain = domain;
     }
 
-    public Set<CustomInformationField> getInformationFields() {
+    public ArrayList<CustomInformationField> getInformationFields() {
         return information;
     }
 

@@ -10,9 +10,6 @@ class SqsDemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
-
-	void AlwaysSuccessful() {
 		assertTrue(true);
 	}
 
