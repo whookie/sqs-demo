@@ -12,7 +12,7 @@ class ExtendedDomainInformationTest {
     void ExtendedDomainInformation_GetSetDomainSuccess() {
         var dom = new ExtendedDomainInformation();
         dom.setDomain("google.com");
-        assertEquals(dom.getDomain(), "google.com");
+        assertEquals("google.com", dom.getDomain());
     }
 
     @Test
