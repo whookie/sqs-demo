@@ -17,6 +17,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Looked at the CVE-2020-15250 vulnerability in version 1.7, decided it is not relevant.
+	implementation 'commons-validator:commons-validator:1.7'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
