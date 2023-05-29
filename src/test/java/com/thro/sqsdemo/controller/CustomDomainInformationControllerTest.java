@@ -56,4 +56,11 @@ class CustomDomainInformationControllerTest {
         ).andExpect(status().is(200))
         .andExpect(content().json("{\"domain\": \"example.com\", \"informationFields\": []}", false));
     }
+
+    @Test
+    void DomainInformationController_AddInvalidDomain() throws Exception {
+        this.application.perform(post("/domain/add").param("domain", "malformed.unknowntld")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+        ).andExpect(status().is(400));
+    }
 }

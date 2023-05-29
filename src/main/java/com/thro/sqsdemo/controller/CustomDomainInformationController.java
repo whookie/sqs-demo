@@ -23,8 +23,12 @@ public class CustomDomainInformationController {
     @PostMapping(path="/add")
     @ResponseStatus(code = HttpStatus.OK)
     public void addDomain(@RequestParam String domain) {
+        String domain_trimmed = Validators.preprocessDomain(domain);
+        if (! Validators.validateDomain(domain_trimmed))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Domain Malformed");
+
         ExtendedDomainInformation domainObject = new ExtendedDomainInformation();
-        domainObject.setDomain(domain);
+        domainObject.setDomain(domain_trimmed);
         try {
             database.save(domainObject);
         } catch (DataIntegrityViolationException e) {
@@ -35,7 +39,11 @@ public class CustomDomainInformationController {
     @GetMapping(path="/get")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<ExtendedDomainInformation> getDomainInformation(@RequestParam String domain) {
-        var result = database.findByDomain(domain);
+        String domain_trimmed = Validators.preprocessDomain(domain);
+        if (! Validators.validateDomain(domain_trimmed))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Domain Malformed");
+
+        var result = database.findByDomain(domain_trimmed);
         if (result.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Domain not found");
         
