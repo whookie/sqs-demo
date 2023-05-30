@@ -5,18 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "custom_information_fields", uniqueConstraints = {
+    @UniqueConstraint(name = "unique_address_fieldName", columnNames = {"address", "field_name"})
+})
 public class CustomInformationField {
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address")
     private ExtendedAddressInformation address;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "field_name", nullable = false)
     private String fieldName;
 
     @Column(nullable = false)
