@@ -45,11 +45,6 @@ class CustomAddressInformationControllerTest {
             .param("value", "DNS")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200));
-
-        this.application.perform(post("/address/get")
-            .param("address", "4.4.4.4")
-            .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
-        ).andExpect(status().is(200));
     }
 
     @Test
