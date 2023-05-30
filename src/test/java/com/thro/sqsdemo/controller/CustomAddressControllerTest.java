@@ -77,4 +77,11 @@ class CustomAddressControllerTest {
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200));
     }
+
+    @Test
+    void AddressController_GetAddressInformation_AddressMalformed() throws Exception {
+        this.application.perform(post("/address/add").param("address", "256.1.1.1")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+        ).andExpect(status().is(400));
+    }
 }
