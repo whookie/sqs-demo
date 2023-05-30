@@ -13,13 +13,13 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
-public class ExtendedDomainInformation {
+public class ExtendedAddressInformation {
     @Id
     @GeneratedValue
     private Integer id;
 
     @Column(unique = true)
-    private String domain;
+    private String address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CustomInformationField> information = new ArrayList<>();
@@ -28,12 +28,12 @@ public class ExtendedDomainInformation {
         return id;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<CustomInformationField> getInformationFields() {

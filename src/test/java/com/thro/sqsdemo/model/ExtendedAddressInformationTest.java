@@ -12,14 +12,14 @@ class ExtendedDomainInformationTest {
 	
     @Test
     void ExtendedDomainInformation_GetSetDomainSuccess() {
-        var dom = new ExtendedDomainInformation();
-        dom.setDomain("google.com");
-        assertEquals("google.com", dom.getDomain());
+        var dom = new ExtendedAddressInformation();
+        dom.setAddress("google.com");
+        assertEquals("google.com", dom.getAddress());
     }
 
     @Test
     void ExtendedDomainInformation_GetAddInformationFields() {
-        var dom = new ExtendedDomainInformation();
+        var dom = new ExtendedAddressInformation();
         dom.addCustomInformation("Subdomain I", "translate.google.com");
         var information = dom.getInformationFields();
         
@@ -30,7 +30,7 @@ class ExtendedDomainInformationTest {
 
     @Test
     void ExtendedDomainInformation_GetSetInformationFields() {
-        var dom = new ExtendedDomainInformation();
+        var dom = new ExtendedAddressInformation();
         var info = new CustomInformationField();
         info.setName("Subdomain I");
         info.setValue("translate.google.com");

@@ -1,20 +1,18 @@
 package com.thro.sqsdemo.controller;
-import org.apache.commons.validator.routines.DomainValidator;
+import org.apache.commons.validator.routines.InetAddressValidator;
 
 public class Validators {
     private Validators() {};
 
-    public static String preprocessDomain(String domain) {
+    public static String preprocessAddress(String address) {
         // 1. Trim whitespaces
         // 2. Validate URL format
-
-        String domain_trimmed = domain.trim();
-
+        String domain_trimmed = address.trim();
         return domain_trimmed;
     }
 
-    public static boolean validateDomain(String domain) {
-        DomainValidator dv = DomainValidator.getInstance();
-        return dv.isValid(domain);
+    public static boolean validateAddress(String address) {
+        InetAddressValidator dv = InetAddressValidator.getInstance();
+        return dv.isValidInet4Address(address);
     }
 }

@@ -15,51 +15,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CustomDomainInformationControllerTest {
+class CustomAddressInformationControllerTest {
     
     @Autowired
     private MockMvc application;
 
     @Test
     void DomainInformationController_GetNoDomainTest() throws Exception {
-        this.application.perform(get("/domain/get").param("domain", "doesnotexist.com")
+        // https://superuser.com/a/698251
+        this.application.perform(get("/address/get").param("address", "240.0.0.1")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(404));
     }
 
     @Test
     void DomainInformationController_AddOneDomainTest() throws Exception {
-        this.application.perform(post("/domain/add").param("domain", "newdomain.com")
+        this.application.perform(post("/address/add").param("address", "240.0.0.2")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200));
     }
 
     @Test
     void DomainInformationController_AddDuplicateDomainTest() throws Exception {
-        this.application.perform(post("/domain/add").param("domain", "duplicatedomain.com")
+        this.application.perform(post("/address/add").param("address", "240.0.0.3")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200));
 
-        this.application.perform(post("/domain/add").param("domain", "duplicatedomain.com")
+        this.application.perform(post("/address/add").param("address", "240.0.0.3")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(409));
     }
 
     @Test
     void DomainInformationController_GetDomain_DomainFound() throws Exception {
-        this.application.perform(post("/domain/add").param("domain", "example.com")
+        this.application.perform(post("/address/add").param("address", "240.0.0.4")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200));
         
-        this.application.perform(get("/domain/get").param("domain", "example.com")
+        this.application.perform(get("/address/get").param("address", "240.0.0.4")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(200))
-        .andExpect(content().json("{\"domain\": \"example.com\", \"informationFields\": []}", false));
+        .andExpect(content().json("{\"address\": \"240.0.0.4\", \"informationFields\": []}", false));
     }
 
     @Test
     void DomainInformationController_AddInvalidDomain() throws Exception {
-        this.application.perform(post("/domain/add").param("domain", "malformed.unknowntld")
+        this.application.perform(post("/address/add").param("address", "256.0.0.1")
             .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
         ).andExpect(status().is(400));
     }

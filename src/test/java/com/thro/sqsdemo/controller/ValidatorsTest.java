@@ -13,27 +13,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ValidatorsTest {
     @Test
     void Validator_preprocessNoSpaces() {
-        String domain = "domain.com";
-        String stripped = Validators.preprocessDomain(domain);
-        assertEquals(domain, stripped);
+        String address = "1.1.1.1";
+        String stripped = Validators.preprocessAddress(address);
+        assertEquals(address, stripped);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"domain.com", "  domain.com  ", "\tdomain.com\t\t", "\ndomain.com\n"})
+    @ValueSource(strings = {"1.1.1.1", "  1.1.1.1  ", "\t1.1.1.1\t\t", "\n1.1.1.1\n"})
     void Validator_preprocessDomainInput(String arg) {
-        String stripped = Validators.preprocessDomain(arg);
-        assertEquals("domain.com", stripped);
+        String stripped = Validators.preprocessAddress(arg);
+        assertEquals("1.1.1.1", stripped);
     }
 
     @Test
-    void Validator_domainValid() {
-        String domain = "domain.com";
-        assertTrue(Validators.validateDomain(domain));
+    void Validator_addressValid() {
+        String domain = "1.1.1.1";
+        assertTrue(Validators.validateAddress(domain));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"domain:com", "domain.unknowntld", "domain.local", "1.1.1.1"})
-    void Validator_domainsInvalid(String arg) {
-        assertFalse(Validators.validateDomain(arg));
+    @ValueSource(strings = {"1.1.1.256", "1.1.1", "1.1.1,1", "1.1.1.1.1"})
+    void Validator_addressInvalid(String arg) {
+        assertFalse(Validators.validateAddress(arg));
     }
 }

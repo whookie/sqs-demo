@@ -15,37 +15,37 @@ import org.springframework.web.server.ResponseStatusException;
 import com.thro.sqsdemo.model.*;
 
 @Controller
-@RequestMapping(path="/domain")
-public class CustomDomainInformationController {
+@RequestMapping(path="/address")
+public class CustomAddressInformationController {
     @Autowired
     private UserRepository database;
 
     @PostMapping(path="/add")
     @ResponseStatus(code = HttpStatus.OK)
-    public void addDomain(@RequestParam String domain) {
-        String domain_trimmed = Validators.preprocessDomain(domain);
-        if (! Validators.validateDomain(domain_trimmed))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Domain Malformed");
+    public void addAddress(@RequestParam String address) {
+        String address_trimmed = Validators.preprocessAddress(address);
+        if (! Validators.validateAddress(address_trimmed))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
 
-        ExtendedDomainInformation domainObject = new ExtendedDomainInformation();
-        domainObject.setDomain(domain_trimmed);
+        ExtendedAddressInformation addressObject = new ExtendedAddressInformation();
+        addressObject.setAddress(address_trimmed);
         try {
-            database.save(domainObject);
+            database.save(addressObject);
         } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Domain already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Address already exists");
         }
     }
 
     @GetMapping(path="/get")
     @ResponseStatus(code = HttpStatus.OK)
-    public ResponseEntity<ExtendedDomainInformation> getDomainInformation(@RequestParam String domain) {
-        String domain_trimmed = Validators.preprocessDomain(domain);
-        if (! Validators.validateDomain(domain_trimmed))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Domain Malformed");
+    public ResponseEntity<ExtendedAddressInformation> getAddressInformation(@RequestParam String address) {
+        String address_trimmed = Validators.preprocessAddress(address);
+        if (! Validators.validateAddress(address_trimmed))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
 
-        var result = database.findByDomain(domain_trimmed);
+        var result = database.findByAddress(address_trimmed);
         if (result.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Domain not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Address not found");
         
         var informationObject = result.get();
         return ResponseEntity.status(200).body(informationObject);

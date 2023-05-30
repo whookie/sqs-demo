@@ -23,7 +23,7 @@ class CustomInformationFieldTest {
 
     @Test
     void CustomInformationField_GetSetParentObject() {
-        var parent = new ExtendedDomainInformation();
+        var parent = new ExtendedAddressInformation();
         var field = new CustomInformationField();
         field.setParentObject(parent);
         assertEquals(parent, field.getParentObject());

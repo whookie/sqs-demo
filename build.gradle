@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// Looked at the CVE-2020-15250 vulnerability in version 1.7, decided it is not relevant.
 	implementation 'commons-validator:commons-validator:1.7'
+	// GSON v2.7 has a vulnerability (CVE-2022-25647) which is fixed in 2.8.9
+	implementation 'com.google.code.gson:gson:2.8.9'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

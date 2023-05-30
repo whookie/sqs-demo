@@ -14,7 +14,7 @@ public class CustomInformationField {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private ExtendedDomainInformation domain;
+    private ExtendedAddressInformation address;
 
     @Column(nullable = false, unique = true)
     private String fieldName;
@@ -42,11 +42,11 @@ public class CustomInformationField {
         this.fieldValue = value;
     }
 
-    public void setParentObject(ExtendedDomainInformation domain) {
-        this.domain = domain;
+    public void setParentObject(ExtendedAddressInformation address) {
+        this.address = address;
     }
 
-    public ExtendedDomainInformation getParentObject() {
-        return this.domain;
+    public ExtendedAddressInformation getParentObject() {
+        return this.address;
     }
 }
