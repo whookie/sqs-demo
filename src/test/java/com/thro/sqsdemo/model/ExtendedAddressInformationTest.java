@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExtendedDomainInformationTest {
+class ExtendedAddressInformationTest {
 	
     @Test
-    void ExtendedDomainInformation_GetSetDomainSuccess() {
+    void ExtendedDomainInformation_GetSetAddressSuccess() {
         var dom = new ExtendedAddressInformation();
-        dom.setAddress("google.com");
-        assertEquals("google.com", dom.getAddress());
+        dom.setAddress("1.1.1.1");
+        assertEquals("1.1.1.1", dom.getAddress());
     }
 
     @Test
