@@ -3,14 +3,14 @@
 The load test utilizes the Python-library [Locust](https://locust.io/).
 It is an easy-to-use load testing library which is configurable in python.
 
-# Installing dependencies
+## Installing dependencies
 ```
 sudo apt update
 sudo apt install python3 # Minimum version 3.7
 pip install locust
 ```
 
-# Running
+## Running
 ```
 cd testing/load_test
 locust
