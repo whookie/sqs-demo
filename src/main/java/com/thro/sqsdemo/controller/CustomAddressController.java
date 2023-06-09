@@ -1,6 +1,8 @@
 package com.thro.sqsdemo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -42,7 +44,7 @@ public class CustomAddressController {
 
     @GetMapping(path="/get")
     @ResponseStatus(code = HttpStatus.OK)
-    public ResponseEntity<JsonElement> getAddressInformation(@RequestParam String address) {
+    public ResponseEntity<String> getAddressInformation(@RequestParam String address) {
         String address_trimmed = Validators.preprocessAddress(address);
         if (! Validators.validateAddress(address_trimmed))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
@@ -54,7 +56,7 @@ public class CustomAddressController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Remote API may be down to refusing our connection");
         }
 
-        if (api_result.getAsJsonObject().get("error").getAsBoolean()) {
+        if (api_result.getAsJsonObject().has("error") && api_result.getAsJsonObject().get("error").getAsBoolean()) {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, String.format("Received error response: %s", api_result.getAsJsonObject().get("reason").getAsString()));
         }
 
@@ -63,8 +65,9 @@ public class CustomAddressController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Address not found");
 
         var informationObject = result.get();
-        JsonElement informationObjectJson = new GsonBuilder().create().toJsonTree(informationObject, ExtendedAddressInformation.class);
+        var informationFields = informationObject.getInformationFields();
+        JsonElement informationObjectJson = new GsonBuilder().create().toJsonTree(informationFields, informationFields.getClass());
         api_result.getAsJsonObject().add("additions", informationObjectJson);
-        return ResponseEntity.status(200).body(api_result);
+        return ResponseEntity.status(200).body(api_result.toString());
     }
 }
