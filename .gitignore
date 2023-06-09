@@ -31,3 +31,6 @@ hs_err_pid*
 # Exclude all built binary files by directory
 bin/
 build/
+
+# Exclude python cache directory
+__pycache__/
