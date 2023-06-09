@@ -34,3 +34,6 @@ build/
 
 # Exclude python cache directory
 __pycache__/
+
+# Explicitly exclude the chromedriver file from the ui test
+testing/ui_test/chromedriver
