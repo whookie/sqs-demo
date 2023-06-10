@@ -72,6 +72,25 @@ class CustomAddressControllerTest {
             ).andExpect(status().is(200));
         }
     }
+
+    @Test
+    void AddressController_GetAddress_AddressMalformed() throws Exception {
+            this.application.perform(get("/address/get").param("address", "555.2.2.2")
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+            ).andExpect(status().is(400));
+    }
+    
+    @Test
+    void AddressController_GetAddress_AddressIsReserved() throws Exception {
+        final String api_response_string = "{\r\n    \"ip\": \"10.10.10.10\",\r\n    \"error\": true,\r\n    \"reason\": \"Reserved IP Address\",\r\n    \"reserved\": true,\r\n    \"version\": \"IPv4\"\r\n}";
+        var api_response = JsonParser.parseString(api_response_string);
+
+        try (MockedConstruction<IPAPI> mocked = mockConstruction(IPAPI.class, (mock, context) -> { when(mock.getAddressInformation()).thenReturn(api_response); })) {
+            this.application.perform(get("/address/get").param("address", "2.2.2.2")
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+            ).andExpect(status().is(417));
+        }
+    }
     
     @Test
     void AddressController_AddInvalidAddress() throws Exception {
