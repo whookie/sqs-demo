@@ -19,7 +19,7 @@ public class CustomInformationField {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "address")
     private ExtendedAddressInformation address;
 

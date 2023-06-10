@@ -23,6 +23,7 @@ import com.thro.sqsdemo.model.*;
 @Controller
 @RequestMapping(path="/address")
 public class CustomAddressController {
+
     @Autowired
     private AddressRepository database;
 
@@ -51,7 +52,8 @@ public class CustomAddressController {
 
         JsonElement api_result;
         try {
-            api_result = IPAPI.getAddressInformation(address_trimmed);
+            IPAPI api = new IPAPI(address_trimmed);
+            api_result = api.getAddressInformation();
         } catch (IOException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Remote API may be down to refusing our connection");
         }

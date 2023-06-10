@@ -22,7 +22,13 @@ dependencies {
 	// GSON v2.7 has a vulnerability (CVE-2022-25647) which is fixed in 2.8.9
 	implementation 'com.google.code.gson:gson:2.8.9'
 	runtimeOnly 'com.h2database:h2'
+
+	testImplementation 'junit:junit:4.+'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-inline:+'
+	testImplementation 'org.powermock:powermock-core:2.0.9'
+	testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+	testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
 }
 
 jacocoTestReport {
@@ -48,5 +54,5 @@ sonarqube {
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+	useJUnit()
 }

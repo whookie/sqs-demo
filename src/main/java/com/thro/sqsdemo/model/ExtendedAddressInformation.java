@@ -18,10 +18,10 @@ public class ExtendedAddressInformation {
     @GeneratedValue
     private Integer id;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "address")
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CustomInformationField> information = new ArrayList<>();
 
     public Integer getId() {
