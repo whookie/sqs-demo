@@ -16,12 +16,12 @@ import com.google.gson.JsonParser;
 
 @Service
 public class IPAPI implements IIPAPI {
-    private static final String apiUrlTemplate = "https://ipapi.co/%s/json";
+    private static final String API_URL_TEMPLATE = "https://ipapi.co/%s/json";
 
     public JsonElement getAddressInformation(String address) throws IOException {
         // Assume the address is already validated - and even if not, the API will notify us
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
-        String ipapi_domain = String.format(apiUrlTemplate, encodedAddress);
+        String ipapi_domain = String.format(API_URL_TEMPLATE, encodedAddress);
         URLConnection connection = new URL(ipapi_domain).openConnection();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
