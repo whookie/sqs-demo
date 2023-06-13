@@ -35,17 +35,17 @@ public class CustomAddressInformationController {
         // Second, gather information from IPAPI
         // Third, add the fields to the response and return
 
-        String address_trim = Validators.preprocessAddress(address);
-        if (! Validators.validateAddress(address_trim))
+        String addressTrim = Validators.preprocessAddress(address);
+        if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Invalid");
         
-        var result = repo.findAllByAddress(address_trim);
+        var result = repo.findAllByAddress(addressTrim);
         if (result.size() == 0)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fields for this address");
         
         JsonElement apiResponse;
         try {
-            apiResponse = api.getAddressInformation(address_trim);
+            apiResponse = api.getAddressInformation(addressTrim);
         } catch (IOException e) {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Remote API not reachable");
         }
@@ -63,8 +63,8 @@ public class CustomAddressInformationController {
     @PostMapping(path="/add")
     @ResponseStatus(code = HttpStatus.OK)
     public void addInformationField(@RequestParam String address, @RequestParam String name, @RequestParam String value) {
-        String address_trim = Validators.preprocessAddress(address);
-        if (! Validators.validateAddress(address_trim))
+        String addressTrim = Validators.preprocessAddress(address);
+        if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
 
         AddressEntry info = new AddressEntry(address, name, value);
@@ -74,10 +74,10 @@ public class CustomAddressInformationController {
     @DeleteMapping(path="/delete")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteInformationField(@RequestParam String address, @RequestParam String name) {
-        String address_trim = Validators.preprocessAddress(address);
-        if (! Validators.validateAddress(address_trim))
+        String addressTrim = Validators.preprocessAddress(address);
+        if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
 
-        repo.deleteByAddressAndKey(address_trim, name);
+        repo.deleteByAddressAndKey(addressTrim, name);
     }
 }
