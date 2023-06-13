@@ -12,20 +12,10 @@
   </style>
 </head>
 <body>
-  <h1>Add Address</h1>
-  <form action="/address/add" method="POST">
-    <label for="ipAddress">IP Address:</label>
-    <input type="text" id="ipAddress" name="address" required>
-    <br><br>
-    <input type="submit" id="confirmAddAddress" value="Confirm">
-  </form>
-  
-  <hr>
-  
   <h1>Add Information</h1>
   <form action="/information/add" method="POST">
-    <label for="ipAddress2">IP Address:</label>
-    <input type="text" id="ipAddress2" name="address" required>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
     <br><br>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
@@ -33,7 +23,30 @@
     <label for="value">Value:</label>
     <input type="text" id="value" name="value" required>
     <br><br>
-    <input type="submit" id="confirmAddInfo" value="Confirm">
+    <input type="submit" id="submitInfo" value="Submit">
+  </form>
+  
+  <hr>
+  
+  <h1>Remove Information</h1>
+  <form action="/information/delete" method="DELETE">
+    <label for="removeAddress">Address:</label>
+    <input type="text" id="removeAddress" name="address" required>
+    <br><br>
+    <label for="removeName">Name:</label>
+    <input type="text" id="removeName" name="name" required>
+    <br><br>
+    <input type="submit" id="submitRemove" value="Submit">
+  </form>
+  
+  <hr>
+  
+  <h1>Get Entry</h1>
+  <form action="/information/get" method="GET">
+    <label for="getAddress">Address:</label>
+    <input type="text" id="getAddress" name="address" required>
+    <br><br>
+    <input type="submit" id="submitGetEntry" value="Submit">
   </form>
 </body>
 </html>

@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+
 class IPAPITest {
     @Test
     void IPAPI_getAddressInformationTest() throws Exception {
-        IPAPI api = new IPAPI("1.1.1.1");
-        var result = api.getAddressInformation();
+        IIPAPI api = new IPAPI();
+        var result = api.getAddressInformation("1.1.1.1");
         var ip = result.getAsJsonObject().get("ip").getAsString();
         var org = result.getAsJsonObject().get("org").getAsString();
 
@@ -21,8 +20,8 @@ class IPAPITest {
 
     @Test
     void IPAPI_getAddressInformationTest_noSuchAddress() throws Exception {
-        IPAPI api = new IPAPI("256.0.0.1");
-        var result = api.getAddressInformation();
+        IPAPI api = new IPAPI();
+        var result = api.getAddressInformation("256.0.0.1");
 
         var ip = result.getAsJsonObject().get("ip").getAsString();
         var error = result.getAsJsonObject().get("error").getAsBoolean();
@@ -35,8 +34,8 @@ class IPAPITest {
     
     @Test
     void IPAPI_getAddressInformationTest_reservedAddress() throws Exception {
-        IPAPI api = new IPAPI("240.0.0.1");
-        var result = api.getAddressInformation();
+        IPAPI api = new IPAPI();
+        var result = api.getAddressInformation("240.0.0.1");
 
         var ip = result.getAsJsonObject().get("ip").getAsString();
         var error = result.getAsJsonObject().get("error").getAsBoolean();
