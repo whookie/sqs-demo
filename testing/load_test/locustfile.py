@@ -9,6 +9,10 @@ class APIUser(HttpUser):
 
     @task
     def add_address(self):
+
+        # Note that we explicitly avoid flooding the /information/get URL,
+        # because it accesses a 3rd party site. We do not want to flood the 3rd party site.
+
         addr = self.get_random_address()
-        self.client.post("/address/add?address=%s" % addr)
         self.client.post("/information/add?address=%s&name=A&value=B" % addr)
+        self.client.delete("/information/delete?address=%s&name=A" % addr)
