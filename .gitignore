@@ -37,3 +37,8 @@ __pycache__/
 
 # Explicitly exclude the chromedriver file from the ui test
 testing/ui_test/chromedriver
+
+# RobotFramework test reports
+log.html
+output.xml
+report.html
