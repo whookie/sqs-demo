@@ -27,7 +27,7 @@ import com.thro.sqsdemo.model.AddressEntry;
 import com.thro.sqsdemo.model.AddressInformationRepo;
 
 
-public class CustomAddressInformationControllerUnittest {
+class CustomAddressInformationControllerUnitTest {
     
     @Mock
     private IIPAPI api;

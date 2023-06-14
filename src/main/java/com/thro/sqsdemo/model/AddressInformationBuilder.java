@@ -13,7 +13,7 @@ public class AddressInformationBuilder {
     }
 
     public Map<String, String> getAllAddressFields() {
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new HashMap<>();
 
         for (AddressEntry entry : entries) {
             result.put(entry.getKey(), entry.getValue());

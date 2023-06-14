@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class AddressEntryTest {
+class AddressEntryTest {
     
     @Autowired
     AddressInformationRepo repo;
 
     @Test
-    public void AddressEntryTest_CreateRetrieveSingleEntry_Success() throws Exception {
+    void AddressEntryTest_CreateRetrieveSingleEntry_Success() throws Exception {
         AddressEntry entry = new AddressEntry();
         entry.setAddress("1.1.1.1");
         entry.setKey("Key");
@@ -34,13 +34,13 @@ public class AddressEntryTest {
     }
 
     @Test
-    public void AddressEntryTest_RetrieveSingleEntry_FailureNoEntry() throws Exception {
+    void AddressEntryTest_RetrieveSingleEntry_FailureNoEntry() throws Exception {
         var result = repo.findByAddressAndKey("1.1.1.1", "NoSuchKey");
         assertFalse(result.isPresent());
     }
 
     @Test
-    public void AddressEntryTest_CreateRetrieveMultipleEntries() throws Exception {
+    void AddressEntryTest_CreateRetrieveMultipleEntries() throws Exception {
         AddressEntry entry1 = new AddressEntry("1.1.1.1", "Key A", "Value A");
         AddressEntry entry2 = new AddressEntry("1.1.1.1", "Key B", "Value B");
 
@@ -59,7 +59,7 @@ public class AddressEntryTest {
     }
 
     @Test
-    public void AddressEntryTest_CreateDeleteSingleEntry_Success() throws Exception {
+    void AddressEntryTest_CreateDeleteSingleEntry_Success() throws Exception {
         AddressEntry entry = new AddressEntry("1.1.1.1", "Key", "Value");
         repo.save(entry);
         
@@ -70,7 +70,7 @@ public class AddressEntryTest {
     }
 
     @Test
-    public void AddressEntryTest_CreateSingleAndDelete_Success() throws Exception {
+    void AddressEntryTest_CreateSingleAndDelete_Success() throws Exception {
         AddressEntry entry = new AddressEntry("1.1.1.1", "Key", "Value");
         repo.save(entry);
         

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressInformationBuilderTest {
+class AddressInformationBuilderTest {
 
     @Test
     void AddressInformationBuilder_BuildAddressInformation() throws Exception {

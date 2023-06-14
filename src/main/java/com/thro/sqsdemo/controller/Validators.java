@@ -7,10 +7,7 @@ public class Validators {
     private Validators() {};
 
     public static String preprocessAddress(String address) {
-        // 1. Trim whitespaces
-        // 2. Validate URL format
-        String domain_trimmed = address.trim();
-        return domain_trimmed;
+        return address.trim();
     }
 
     public static boolean validateAddress(String address) {

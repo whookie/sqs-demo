@@ -40,7 +40,7 @@ public class CustomAddressInformationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Invalid");
         
         var result = repo.findAllByAddress(addressTrim);
-        if (result.size() == 0)
+        if (result.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fields for this address");
         
         JsonElement apiResponse;
@@ -57,7 +57,7 @@ public class CustomAddressInformationController {
         apiResponse.getAsJsonObject().add("fields", customFields);
         String resultString = parser.toJson(apiResponse);
 
-        return new ResponseEntity<String>(resultString, HttpStatus.OK);
+        return new ResponseEntity<>(resultString, HttpStatus.OK);
     }
 
     @PostMapping(path="/add")
