@@ -77,7 +77,3 @@ To achieve this, the following requirements must be met:
 | CFO           | The running system should produce little cost             |
 | User          | The system should be well documented and easy to use      |
 | Me            | The system should give me a good grade                    |
-
-## Final Considerations
- - This project is purely for educational purposes and should not be used as an actual webservice.
- - As developer for embedded systems, my knowledge in Java-based web web applications is severely limited.
