@@ -14,6 +14,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 
+/**
+ * Concrete implementation for the IPAPI service.
+ * This implementation accesses IPAPI.co to gather the information.
+ */
 @Service
 public class IPAPI implements IIPAPI {
     private static final String API_URL_TEMPLATE = "https://ipapi.co/%s/json";

@@ -19,6 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.thro.sqsdemo.model.*;
 
+/**
+ * Main REST controller for the custom information field API
+ */
 @Controller
 @RequestMapping(path="/information")
 public class CustomAddressInformationController {
@@ -29,12 +32,16 @@ public class CustomAddressInformationController {
     @Autowired
     private AddressInformationRepo repo;
 
+    /**
+     * REST-Endpoint used to get information regarding an IPv4 address.
+     * @param address Hopefully valid IPv4
+     * @return [200] with JSON content on success
+     * @return [400] if the address is invalid
+     * @return [404] if the address has no entry,
+     * @return [503] if the API can't be reached
+     */
     @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getExtendedAddressInformation(@RequestParam String address) {
-        // First, get the entries.
-        // Second, gather information from IPAPI
-        // Third, add the fields to the response and return
-
         String addressTrim = Validators.preprocessAddress(address);
         if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Invalid");
@@ -60,6 +67,14 @@ public class CustomAddressInformationController {
         return new ResponseEntity<>(resultString, HttpStatus.OK);
     }
 
+    /**
+     * Add a new custom field for an IPv4 address
+     * @param address Hopefully valid IPv4 address
+     * @param name Name (or Key) of the new field
+     * @param value Value of the new field
+     * @return [200] on success
+     * @return [400] if the address is malformed
+     */
     @PostMapping(path="/add")
     @ResponseStatus(code = HttpStatus.OK)
     public void addInformationField(@RequestParam String address, @RequestParam String name, @RequestParam String value) {
@@ -71,6 +86,13 @@ public class CustomAddressInformationController {
         repo.save(info);
     }
 
+    /**
+     * Delete an existing custom field by address and name
+     * @param address Hopefully valid IPv4 address
+     * @param name Name of the field
+     * @return [200] on success
+     * @return [400] if the address is malformed
+     */
     @DeleteMapping(path="/delete")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteInformationField(@RequestParam String address, @RequestParam String name) {
