@@ -42,7 +42,7 @@ public class CustomAddressInformationController {
      */
     @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getExtendedAddressInformation(@RequestParam String address) {
-        String addressTrim = Validators.preprocessAddress(address);
+        String addressTrim = Validators.preprocessText(address);
         if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Invalid");
         
@@ -78,11 +78,13 @@ public class CustomAddressInformationController {
     @PostMapping(path="/add")
     @ResponseStatus(code = HttpStatus.OK)
     public void addInformationField(@RequestParam String address, @RequestParam String name, @RequestParam String value) {
-        String addressTrim = Validators.preprocessAddress(address);
+        String addressTrim = Validators.preprocessText(address);
         if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
+        String nameTrim = Validators.preprocessText(name);
+        String valueTrim = Validators.preprocessText(value);
 
-        AddressEntry info = new AddressEntry(address, name, value);
+        AddressEntry info = new AddressEntry(address, nameTrim, valueTrim);
         repo.save(info);
     }
 
@@ -96,10 +98,11 @@ public class CustomAddressInformationController {
     @DeleteMapping(path="/delete")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteInformationField(@RequestParam String address, @RequestParam String name) {
-        String addressTrim = Validators.preprocessAddress(address);
+        String addressTrim = Validators.preprocessText(address);
         if (! Validators.validateAddress(addressTrim))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Address Malformed");
+        String nameTrim = Validators.preprocessText(name);
 
-        repo.deleteByAddressAndKey(addressTrim, name);
+        repo.deleteByAddressAndKey(addressTrim, nameTrim);
     }
 }

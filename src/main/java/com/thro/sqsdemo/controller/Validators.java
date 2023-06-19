@@ -10,12 +10,12 @@ public class Validators {
     private Validators() {};
 
     /**
-     * Strip all leading and trailing whitespaces off the address.
-     * @param address Should, but must not be a valid IP address.
-     * @return The address without trailing or leading whitespaces.
+     * Strip all leading and trailing whitespaces off a text
+     * @param text Text to be stripped
+     * @return The text without leading or trailing whitespaces
      */
-    public static String preprocessAddress(String address) {
-        return address.trim();
+    public static String preprocessText(String text) {
+        return text.trim();
     }
 
     /**

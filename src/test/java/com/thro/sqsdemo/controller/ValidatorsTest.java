@@ -13,14 +13,14 @@ class ValidatorsTest {
     @Test
     void Validator_preprocessNoSpaces() {
         String address = "1.1.1.1";
-        String stripped = Validators.preprocessAddress(address);
+        String stripped = Validators.preprocessText(address);
         assertEquals(address, stripped);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1.1.1.1", "  1.1.1.1  ", "\t1.1.1.1\t\t", "\n1.1.1.1\n"})
     void Validator_preprocessDomainInput(String arg) {
-        String stripped = Validators.preprocessAddress(arg);
+        String stripped = Validators.preprocessText(arg);
         assertEquals("1.1.1.1", stripped);
     }
 
