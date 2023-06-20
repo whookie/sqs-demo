@@ -11,7 +11,7 @@ This code smell is rooted in the attempt to prevent a class from being instantia
 SonarQube does not like that, removing the private empty constructor however does lead to
 code smells with higher severity.
 
-The risk here is esentially not present.
+The risk here is essentially not present.
 
 ## Design Deficiencies
 Regarding modularity and scalability,  the `AddressEntry` model and the `AddressInformationBuilder`

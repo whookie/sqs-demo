@@ -5,8 +5,8 @@ This contains architectural decisions, as well as patterns and technologies.
 While some aspects of the solution strategy are predefined by the frame of the lecture,
 most come naturally with the choices of technologies.
 
-## General Achitecture
-With the choice of the Spring Boot framework, a microservice architecture is the natual
+## General Architecture
+With the choice of the Spring Boot framework, a microservice architecture is the natural
 choice for this project. Important here is that all components are loosely coupled.
 This allows for increased scalability, portability as well as independent development of
 individual components.

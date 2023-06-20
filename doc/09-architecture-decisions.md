@@ -11,9 +11,9 @@ Described here are choices regarding the software architecture.
 These choices may be influenced by technical choices.
 
 ### Microservice Architecture
-- **Extendability**: This is achieved by using small modules with few responsibilites, ´
+- **Extendability**: This is achieved by using small modules with few responsibilities,
   as well as loosely coupling modules together.
-- **Flexibility**: Loosely coupled modules allow for quickly interchangable components.
+- **Flexibility**: Loosely coupled modules allow for quickly interchangeable components.
 - **Scalability**: Using several, small services enables horizontal scaling in necessary areas.
 - **Maintainability**: Smaller, loosely coupled modules and services are easier to maintain.
 

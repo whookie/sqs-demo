@@ -2,7 +2,7 @@
 
 This project serves as my examination project for the university subject of Software Quality Assurance.
 The goal is to show the usage of several types of quality assurance in software systems,
-including but not limited to Unittesting, Integration testing, Acceptance testing, Documentation, etc.
+including but not limited to unit testing, Integration testing, Acceptance testing, Documentation, etc.
 
 The primary project requirements are:
  - The software must offer a REST-Service

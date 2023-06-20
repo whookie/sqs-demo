@@ -17,7 +17,7 @@ the design and implementation decisions.
   The remote API is accessed using HTTP over SSL/TLS (HTTPS).
   As the server is only ever hosted locally on the development machine, SSL/TLS is not needed.
 
-## Resiliance
+## Resilience
 - **Exception Handing**:
   Proper try-catch blocks are used to handle exceptions.
   Exceptions must never pass silently.

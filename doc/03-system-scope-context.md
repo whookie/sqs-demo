@@ -20,5 +20,5 @@
 ## Communication: Webservice <-> Database
 - The communication between the backend and the database will use whatever spring boot magically
   decides to use by default.
-- Beceause this is simply a demo project, the database used is an H2 In-Memory database.
+- Because this is simply a demo project, the database used is an H2 In-Memory database.
 
