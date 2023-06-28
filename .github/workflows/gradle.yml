@@ -52,7 +52,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Reports
+          name: Test Report
           path: build/reports/jacoco
 
   depcheck:
@@ -70,13 +70,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: dependencyCheckAnalyze
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check
-          path: reports/
       - name: Upload Artifacts
+        if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: Reports
+          name: Dependency Vulnerability Report
           path: build/reports/dependency-check-report.html
