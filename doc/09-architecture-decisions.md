@@ -44,6 +44,7 @@ in the tutorials I used to re-learn spring boot. They used a H2 in-memory databa
 
 ### Test Frameworks
 - **Unit Testing**: The choice for JUnit with Mockito is once again grounded in the tutorials I used.
+- **Persistance Testing**: This is tested using JUnit with `DataJpaTest`, because it was already there.
 - **Integration Testing**: Once again, JUnit with Mockito and a spring boot test, as per default selection.
 - **Acceptance Testing**: The choice here is the Robot Framework. Being based on python and implementing
   a human language-like abstraction layer, the framework is perfect for testing workflows without
