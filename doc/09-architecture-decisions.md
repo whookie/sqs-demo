@@ -58,3 +58,5 @@ in the tutorials I used to re-learn spring boot. They used an H2 in-memory datab
   and graphical results regarding errors and response time.
 - **Static Code Analysis**: As per lecturers requirements, SonarQube must be used.
 - **Test Coverage Calculation**: Jacoco, as used in the tutorials I read.
+- **Vulnerability Checking**: OWASP DependencyCheck is used as a gradle plugin, because it's just easier
+  to directly integrate it as plugin into gradle.
