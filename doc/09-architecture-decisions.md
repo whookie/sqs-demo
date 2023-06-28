@@ -39,8 +39,8 @@ With no real choice for java web frameworks, the only viable framework is spring
 Having previously worked with gradle, albeit a long time ago, the choice was gradle.
 
 ### Database
-With the choice between a myriad of databases, the choice to use an H2 in-memory database is grounded
-in the tutorials I used to re-learn spring boot. They used an H2 in-memory database, so I stuck with it.
+With the choice between a myriad of databases, the choice to use a H2 in-memory database is grounded
+in the tutorials I used to re-learn spring boot. They used a H2 in-memory database, so I stuck with it.
 
 ### Test Frameworks
 - **Unit Testing**: The choice for JUnit with Mockito is once again grounded in the tutorials I used.
